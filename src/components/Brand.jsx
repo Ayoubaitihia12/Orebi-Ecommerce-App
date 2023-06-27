@@ -1,0 +1,62 @@
+import React , {useState} from 'react'
+import NavTitle from './NavTitle'
+import { motion } from 'framer-motion';
+
+const Brand = () => {
+
+    const [showBrands, setShowBrands] = useState(true);
+   
+    const brands = [
+      {
+        _id: 9006,
+        title: "Apple",
+      },
+      {
+        _id: 9007,
+        title: "Ultron",
+      },
+      {
+        _id: 9008,
+        title: "Unknown",
+      },
+      {
+        _id: 9009,
+        title: "Shoppers Home",
+      },
+      {
+        _id: 9010,
+        title: "Hoichoi",
+      },
+    ];
+  
+    return (
+        <div>
+            <div className='cursor-pointer' onClick={()=>setShowBrands(!showBrands)}>
+                <NavTitle title="Shop by Brand" icons={true} />
+            </div>
+
+            {showBrands && (<motion.div
+                initial={{ y: -20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.5 }}
+            >
+                <ul className="flex flex-col gap-4 text-sm lg:text-base text-[#767676]">
+                    {
+                        brands.map(({_id,title})=>(
+                            <li 
+                                key={_id}
+                                className="border-b-[1px] border-b-[#F0F0F0] pb-2 flex items-center gap-2 hover:text-primeColor hover:border-gray-400 duration-300"
+                            >
+                                {title}
+                            </li>
+                        ))
+                    }
+                </ul>
+
+            </motion.div>)}
+            
+        </div>
+    )
+}
+
+export default Brand
